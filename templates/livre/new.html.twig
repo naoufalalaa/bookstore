@@ -3,7 +3,7 @@
 {% block title %}New Livre{% endblock %}
 
 {% block body %}
-    <table class="uk-margin-top">
+    <table class="uk-pading-top">
         <tr>
             <td>
                 <a class="uk-button uk-button-secondary uk-padding-medium uk-margin-bottom" href="{{ path('livre_index') }}"><</a>
@@ -15,5 +15,4 @@
     </table>
     {{ include('livre/_form.html.twig') }}
 
-    <a href="{{ path('livre_index') }}">back to list</a>
 {% endblock %}

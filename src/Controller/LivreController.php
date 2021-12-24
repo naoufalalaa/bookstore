@@ -32,7 +32,10 @@ class LivreController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($livre);
             $entityManager->flush();
-
+            $this->addFlash(
+                'Success',
+                'Your book was added successfully !'
+            );
             return $this->redirectToRoute('livre_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -58,7 +61,10 @@ class LivreController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
+            $this->addFlash(
+                'Success',
+                'Your book was updated successfully !'
+            );
             return $this->redirectToRoute('livre_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -74,6 +80,10 @@ class LivreController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$livre->getId(), $request->request->get('_token'))) {
             $entityManager->remove($livre);
             $entityManager->flush();
+            $this->addFlash(
+                'Warning',
+                'This Book had been deleted successfully !'
+            );
         }
 
         return $this->redirectToRoute('livre_index', [], Response::HTTP_SEE_OTHER);

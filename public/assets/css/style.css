@@ -1,8 +1,18 @@
+body{
 
+    height:100vh
+}
+
+.head{
+    background-color: #f3f4f5;
+}
 .uk-button {
     border-radius: 5px!important;
 }
 .uk-button-success{
     color: white!important;
     background-color: rgb(80, 167, 80);
+}
+.uk-button-default{
+    background-color: #EEE!important;
 }

@@ -4,13 +4,23 @@
 
 {% block body %}
     <h1>Livre index</h1>
-
+    {% for message in app.flashes('Success') %}
+        <div class="uk-alert uk-alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('Warning') %}
+        <div class="uk-alert uk-alert-warning">
+            {{ message }}
+        </div>
+    {% endfor %}
     <table class="uk-table">
         <thead>
             <tr>
                 <th>Isbn</th>
                 <th>Titre</th>
                 <th>Auteurs</th>
+                <th>Genres</th>
                 <th>Nombre de pages</th>
                 <th>Date de parution</th>
                 <th>Note</th>
@@ -23,18 +33,25 @@
                 <td>{{ livre.isbn }}</td>
                 <td>{{ livre.titre }}</td>
                 <td>
-                <ul>
-                    {% for auteur in livre.auteurs%}
-                        <li>{{ auteur }}</li>
-                    {% endfor %}
-                </ul>
+                    <ul>
+                        {% for auteur in livre.auteurs%}
+                            <li>{{ auteur }}</li>
+                        {% endfor %}
+                    </ul>
                 </td>
-                <td>{{ livre.nombrePages }}</td>
+                <td>
+                    <ul>
+                        {% for genre in livre.genres%}
+                            <li>{{ genre }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>{{ livre.nombrePages }} pages</td>
                 <td>{{ livre.dateDeParution ? livre.dateDeParution|date('d-m-Y') : '' }}</td>
                 <td style="color:{% if livre.note>17 %}green{% endif %}{% if livre.note>14 and livre.note<=17 %}black{% endif %}{% if livre.note>=10 and livre.note<=14 %}orange{% endif %}{% if livre.note<10 %}red{% endif %}">{{ livre.note }} / 20</td>
                 <td>
-                    <a href="{{ path('livre_show', {'id': livre.id}) }}">show</a>
-                    <a href="{{ path('livre_edit', {'id': livre.id}) }}">edit</a>
+                    <a href="{{ path('livre_show', {'id': livre.id}) }}" class="uk-button uk-button-default"><i class="fas fa-eye"></i> Show</a>
+                    <a href="{{ path('livre_edit', {'id': livre.id}) }}" class="uk-button uk-button-primary"><i class="fas fa-edit"></i> Edit</a>
                 </td>
             </tr>
         {% else %}
@@ -45,5 +62,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('livre_new') }}">Create new</a>
+    <a href="{{ path('livre_new') }}" class="uk-button uk-button-secondary"><i class="fas fa-plus-square"></i> Create new</a>
 {% endblock %}
