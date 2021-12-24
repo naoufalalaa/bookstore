@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre{% endblock %}
+
+{% block body %}
+    <table class="uk-margin-top">
+        <tr>
+            <td>
+                <a class="uk-button uk-button-secondary uk-padding-medium uk-margin-bottom" href="{{ path('livre_index') }}"><</a>
+            </td>
+            <td>
+                <h1>Livre</h1>
+            </td>
+        </tr>
+    </table>
+    <table class="uk-table">
+        <tbody>
+            <tr>
+                <th>Isbn</th>
+                <td>{{ livre.isbn }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ livre.titre }}</td>
+            </tr>
+            <tr>
+                <th>Nombre_pages</th>
+                <td>{{ livre.nombrePages }}</td>
+            </tr>
+            <tr>
+                <th>Date_de_parution</th>
+                <td>{{ livre.dateDeParution ? livre.dateDeParution|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                
+                <td style="color:{% if livre.note>17 %}green{% endif %}{% if livre.note>14 and livre.note<=17 %}black{% endif %}{% if livre.note>=10 and livre.note<=14 %}orange{% endif %}{% if livre.note<10 %}red{% endif %}">{{ livre.note }} / 20</td>
+            </tr>
+            <tr>
+                <th>Auteurs</th>
+                <td>
+                    <ul>
+                        {% for auteur in livre.auteurs%}
+                            <li>{{ auteur }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>Genre</th>
+                <td>
+                    <ul>
+                        {% for genre in livre.genres %}
+                            <li>{{ genre }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <table class="uk-width-1-2@s">
+        <tr align="center">
+            <td>
+                <a class="uk-button uk-button-primary" href="{{ path('livre_edit', {'id': livre.id}) }}"><i class="fas fa-edit"></i> Edit</a>
+            </td>
+            <td>
+                {{ include('livre/_delete_form.html.twig') }}
+            </td>
+        </tr>
+    </table>
+
+
+
+{% endblock %}

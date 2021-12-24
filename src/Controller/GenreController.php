@@ -32,7 +32,10 @@ class GenreController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($genre);
             $entityManager->flush();
-
+            $this->addFlash(
+                'Success',
+                'Your gender was added successfully !'
+            );
             return $this->redirectToRoute('genre_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -58,7 +61,10 @@ class GenreController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
+            $this->addFlash(
+                'Success',
+                'Your gender was updated successfully !'
+            );
             return $this->redirectToRoute('genre_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -74,6 +80,10 @@ class GenreController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$genre->getId(), $request->request->get('_token'))) {
             $entityManager->remove($genre);
             $entityManager->flush();
+            $this->addFlash(
+                'Warning',
+                'Your gender was deleted successfully !'
+            );
         }
 
         return $this->redirectToRoute('genre_index', [], Response::HTTP_SEE_OTHER);

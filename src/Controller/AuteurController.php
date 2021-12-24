@@ -32,7 +32,10 @@ class AuteurController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($auteur);
             $entityManager->flush();
-
+            $this->addFlash(
+                'Success',
+                'Your auther was added successfully !'
+            );
             return $this->redirectToRoute('auteur_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -58,7 +61,10 @@ class AuteurController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
+            $this->addFlash(
+                'Success',
+                'Your auther was updated successfully !'
+            );
             return $this->redirectToRoute('auteur_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -74,8 +80,13 @@ class AuteurController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$auteur->getId(), $request->request->get('_token'))) {
             $entityManager->remove($auteur);
             $entityManager->flush();
+            $this->addFlash(
+                'Warning',
+                'Your auther was deleted successfully !'
+            );
         }
 
         return $this->redirectToRoute('auteur_index', [], Response::HTTP_SEE_OTHER);
     }
+    
 }

@@ -4,29 +4,43 @@
 
 {% block body %}
     <h1>Auteur index</h1>
-
-    <table class="table">
+    {% for message in app.flashes('Success') %}
+        <div class="uk-alert uk-alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('Warning') %}
+        <div class="uk-alert uk-alert-warning">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <table class="uk-table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Nom_prenom</th>
+                <th>Nom & prenom</th>
                 <th>Sexe</th>
-                <th>Date_de_naissance</th>
-                <th>Nationalite</th>
+                <th>Date de naissance</th>
+                <th>Nationalité</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for auteur in auteurs %}
             <tr>
-                <td>{{ auteur.id }}</td>
                 <td>{{ auteur.nomPrenom }}</td>
-                <td>{{ auteur.sexe }}</td>
-                <td>{{ auteur.dateDeNaissance ? auteur.dateDeNaissance|date('Y-m-d') : '' }}</td>
+                <td>
+                    {% if auteur.sexe == 'M' %}
+                        <i class="fas fa-mars"></i>
+                    {% endif %}
+                    {% if auteur.sexe == 'F' %}
+                        <i class="fas fa-venus"></i>
+                    {% endif %}
+                </td>
+                <td>{{ auteur.dateDeNaissance ? auteur.dateDeNaissance|date('d-m-Y') : '' }}</td>
                 <td>{{ auteur.nationalite }}</td>
                 <td>
-                    <a href="{{ path('auteur_show', {'id': auteur.id}) }}">show</a>
-                    <a href="{{ path('auteur_edit', {'id': auteur.id}) }}">edit</a>
+                    <a href="{{ path('auteur_show', {'id': auteur.id}) }}" class="uk-button uk-button-default"><i class="fas fa-eye"></i> Show</a>
+                    <a href="{{ path('auteur_edit', {'id': auteur.id}) }}" class="uk-button uk-button-primary"><i class="fas fa-edit"></i> Edit</a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +51,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('auteur_new') }}">Create new</a>
+    <a href="{{ path('auteur_new') }}" class="uk-button uk-button-secondary"><i class="fas fa-plus-square"></i> Create new</a>
 {% endblock %}

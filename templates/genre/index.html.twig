@@ -4,6 +4,16 @@
 
 {% block body %}
     <h1 align="center">Genre index</h1>
+    {% for message in app.flashes('Success') %}
+        <div class="uk-alert uk-alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('Warning') %}
+        <div class="uk-alert uk-alert-warning">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div align="center">
         <table class="uk-table uk-width-1-2@s">
             <thead>

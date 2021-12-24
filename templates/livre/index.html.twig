@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre index{% endblock %}
+
+{% block body %}
+    <h1>Livre index</h1>
+
+    <table class="uk-table">
+        <thead>
+            <tr>
+                <th>Isbn</th>
+                <th>Titre</th>
+                <th>Auteurs</th>
+                <th>Nombre de pages</th>
+                <th>Date de parution</th>
+                <th>Note</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livre in livres %}
+            <tr>
+                <td>{{ livre.isbn }}</td>
+                <td>{{ livre.titre }}</td>
+                <td>
+                <ul>
+                    {% for auteur in livre.auteurs%}
+                        <li>{{ auteur }}</li>
+                    {% endfor %}
+                </ul>
+                </td>
+                <td>{{ livre.nombrePages }}</td>
+                <td>{{ livre.dateDeParution ? livre.dateDeParution|date('d-m-Y') : '' }}</td>
+                <td style="color:{% if livre.note>17 %}green{% endif %}{% if livre.note>14 and livre.note<=17 %}black{% endif %}{% if livre.note>=10 and livre.note<=14 %}orange{% endif %}{% if livre.note<10 %}red{% endif %}">{{ livre.note }} / 20</td>
+                <td>
+                    <a href="{{ path('livre_show', {'id': livre.id}) }}">show</a>
+                    <a href="{{ path('livre_edit', {'id': livre.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('livre_new') }}">Create new</a>
+{% endblock %}
