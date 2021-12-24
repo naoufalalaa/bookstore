@@ -3,6 +3,7 @@
 {% block title %}Genre index{% endblock %}
 
 {% block body %}
+<div class="container">
     <h1 align="center">Genre index</h1>
     {% for message in app.flashes('Success') %}
         <div class="uk-alert uk-alert-success">
@@ -43,5 +44,6 @@
     </div>
     <div align="center">
         <a href="{{ path('genre_new') }}" class="uk-button uk-button-secondary"><i class="fas fa-plus-square"></i> Create new</a>
+    </div>
     </div>
 {% endblock %}

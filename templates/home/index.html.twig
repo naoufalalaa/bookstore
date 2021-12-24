@@ -3,10 +3,23 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-<div class="head uk-padding-small" align="center">
-<h2><img src={{asset('assets/img/books.png')}} width="50px" /> BOOKSTORE</h2>
 
-</div>
+<nav class="uk-navbar-container" uk-navbar>
+    <div class="uk-navbar-left uk-margin-large-left">
+        <ul class="uk-navbar-nav">
+            <li><a href={{path('auteur_index')}}>Auteurs</a></li>
+            <li><a href={{path('livre_index')}}>Livres</a></li>
+        </ul>
+    </div>
+    <div class="uk-navbar-center">
+        <img src={{asset('assets/img/books.png')}} width="50px" />&nbsp;&nbsp;BOOKSTORE
+    </div>
+    <div class="uk-navbar-right uk-margin-large-right">
+        <ul class="uk-navbar-nav">
+            <li><a href={{path('home')}}>Item</a></li>
+        </ul>
+    </div>
+</nav>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#f3f4f5" fill-opacity="1" d="M0,192L48,170.7C96,149,192,107,288,80C384,53,480,43,576,32C672,21,768,11,864,16C960,21,1056,43,1152,90.7C1248,139,1344,213,1392,250.7L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
 <div class="container" uk-parallax="y:100,-100;x:-100,100">
     <h1>Hello</h1>

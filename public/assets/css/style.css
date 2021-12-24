@@ -1,10 +1,9 @@
 body{
-
     height:100vh
 }
 
-.head{
-    background-color: #f3f4f5;
+.head,.uk-navbar-container{
+    background-color: #f3f4f5!important;
 }
 .uk-button {
     border-radius: 5px!important;
