@@ -17,11 +17,18 @@ class User
     private $nom_prenom;
 
     #[ORM\Column(type: 'string', length: 255)]
+    private $role;
+
+    #[ORM\Column(type: 'string', length: 255)]
     private $email;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+    public function getRole(): ?int
+    {
+        return $this->role;
     }
 
     public function getNomPrenom(): ?string
@@ -44,6 +51,12 @@ class User
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+    public function setRole(string $role): self
+    {
+        $this->role = $role;
 
         return $this;
     }
