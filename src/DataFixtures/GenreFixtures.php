@@ -12,37 +12,46 @@ class GenreFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        $genres = [
+            1=>[
+                "nom" => "Horror"
+            ],
+            2=>[
+                "nom" => "Adventure"
+            ],
+            3=>[
+                "nom" => "Sport"
+            ],
+            4=>[
+                "nom" => "Romance"
+            ],
+            5=>[
+                "nom" => "Science Fiction"
+            ],
+            6=>[
+                "nom" => "Documentary"
+            ],
+            7=>[
+                "nom" => "Encyclopedia"
+            ],
+            8=>[
+                "nom" => "Manga"
+            ],
+            9=>[
+                "nom" => "Bande Déssinée"
+            ],
+            10=>[
+                "nom" => "Crime"
+            ]
+        ];
 
-        $genre = new Genre();
-        $genre->setNom("Horror");
-        $manager->persist($genre);
-        $genre = new Genre();
-        $genre->setNom("Adventure");
-        $manager->persist($genre);
-        $genre = new Genre();
-        $genre->setNom("Sport");
-        $manager->persist($genre);
-        $genre = new Genre();
-        $genre->setNom("Romance");
-        $manager->persist($genre);
-        $genre = new Genre();
-        $genre->setNom("Science Fiction");
-        $manager->persist($genre);
-        $genre = new Genre();
-        $genre->setNom("Documentary");
-        $manager->persist($genre);
-        $genre = new Genre();
-        $genre->setNom("Encyclopedia");
-        $manager->persist($genre);
-        $genre = new Genre();
-        $genre->setNom("Manga");
-        $manager->persist($genre);
-        $genre = new Genre();
-        $genre->setNom("Bande Déssinée");
-        $manager->persist($genre);
-        $genre = new Genre();
-        $genre->setNom("Crime");
-        $manager->persist($genre);
+        foreach($genres as $key => $value){
+            $genre = new Genre();
+            $genre->setNom($value['nom']);
+            $manager->persist($genre);
+            //Enregistrer les references de tel sorte qu'on peut les appeler plutard
+            $this->addReference('genre_'.$key,$genre);
+        }
         // $product = new Product();
         // $manager->persist($product);
 

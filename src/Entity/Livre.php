@@ -15,7 +15,7 @@ class Livre
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'integer', length : 13 ,unique:true)]
+    #[ORM\Column(type: 'string', length: 13, unique:true)]
     private $isbn;
 
     #[ORM\Column(type: 'text')]
