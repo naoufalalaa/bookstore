@@ -8,7 +8,7 @@ body{
 }
 .header{
     position: absolute;
-    z-index: 0;
+    z-index: 0!important;
 }
 .head,.uk-navbar-container{
     background-color: #f3f4f5!important;
@@ -22,4 +22,8 @@ body{
 }
 .uk-button-default{
     background-color: #EEE!important;
+}
+.front{
+    position: relative;
+    z-index: 200!important;
 }
