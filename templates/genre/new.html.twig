@@ -3,13 +3,33 @@
 {% block title %}New Genre{% endblock %}
 
 {% block body %}
+<nav class="uk-navbar-container" uk-navbar="offset:0;mode:click">
+        
+        <div class="uk-navbar-center uk-padding-small">
+            <a href="{{path('home')}}"><img src={{asset('assets/img/books.png')}} width="50px"/>&nbsp;&nbsp;<strong>BOOKSTORE</strong></a>
+        </div>
+        <div class="uk-navbar-right uk-margin-large-right">
+            <ul class="uk-navbar-nav">
+            {% if not app.user %}
+                <li><a href={{path('app_login')}}><i class="fas fa-user-friends"></i> Login</a></li>
+                <li><a href={{path('app_register')}}><i class="fas fa-sign-in"></i> Sign in</a></li>
+            {% endif %}
+            {% if app.user %}
+                <li><a href={{path('app_logout')}}><i class="fas fa-sign-out-alt"></i> LogOut</a></li>
+            {% endif %}
+            </ul>
+        </div>
+    </nav>
+<svg xmlns="http://www.w3.org/2000/svg" class="header" viewBox="0 0 1440 320"><path fill="#f3f4f5" fill-opacity="1" d="M0,192L48,170.7C96,149,192,107,288,80C384,53,480,43,576,32C672,21,768,11,864,16C960,21,1056,43,1152,90.7C1248,139,1344,213,1392,250.7L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
+
 {% if app.user %}
+<div class="container front">
 
     <h1>Create new Genre</h1>
 
     {{ include('genre/_form.html.twig') }}
 
-    <a href="{{ path('genre_index') }}">back to list</a>
-
+    <a class="uk-button uk-button-secondary" href="{{ path('genre_index') }}">< back to list</a>
+</div>
 {% endif %}
 {% endblock %}
