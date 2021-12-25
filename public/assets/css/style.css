@@ -27,3 +27,11 @@ body{
     position: relative;
     z-index: 200!important;
 }
+.uk-navbar-center a{
+    text-decoration: none!important;
+    color: rgb(58, 58, 58)!important;
+}
+.uk-navbar-center a:hover{
+    text-decoration: none!important;
+    color: rgb(58, 58, 58)!important;
+}

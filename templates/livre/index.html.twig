@@ -50,10 +50,15 @@
                 <td>{{ livre.nombrePages }} pages</td>
                 <td>{{ livre.dateDeParution ? livre.dateDeParution|date('d-m-Y') : '' }}</td>
                 <td style="color:{% if livre.note>17 %}green{% endif %}{% if livre.note>14 and livre.note<=17 %}black{% endif %}{% if livre.note>=10 and livre.note<=14 %}orange{% endif %}{% if livre.note<10 %}red{% endif %}">{{ livre.note }} / 20</td>
+
                 <td>
                     <a href="{{ path('livre_show', {'id': livre.id}) }}" class="uk-button uk-button-default"><i class="fas fa-eye"></i> Show</a>
-                    <a href="{{ path('livre_edit', {'id': livre.id}) }}" class="uk-button uk-button-primary"><i class="fas fa-edit"></i> Edit</a>
+                    {% if app.user %}
+                        <a href="{{ path('livre_edit', {'id': livre.id}) }}" class="uk-button uk-button-primary"><i class="fas fa-edit"></i> Edit</a>
+                    {% endif %}
                 </td>
+
+
             </tr>
         {% else %}
             <tr>
@@ -62,7 +67,9 @@
         {% endfor %}
         </tbody>
     </table>
-
+{% if app.user %}
     <a href="{{ path('livre_new') }}" class="uk-button uk-button-secondary"><i class="fas fa-plus-square"></i> Create new</a>
+{% endif %}
+
 </div>
 {% endblock %}

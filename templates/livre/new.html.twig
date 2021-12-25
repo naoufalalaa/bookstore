@@ -3,6 +3,8 @@
 {% block title %}New Livre{% endblock %}
 
 {% block body %}
+{% if app.user %}
+
     <table class="uk-pading-top">
         <tr>
             <td>
@@ -14,5 +16,6 @@
         </tr>
     </table>
     {{ include('livre/_form.html.twig') }}
+{% endif %}
 
 {% endblock %}

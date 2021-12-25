@@ -3,9 +3,13 @@
 {% block title %}New Genre{% endblock %}
 
 {% block body %}
+{% if app.user %}
+
     <h1>Create new Genre</h1>
 
     {{ include('genre/_form.html.twig') }}
 
     <a href="{{ path('genre_index') }}">back to list</a>
+
+{% endif %}
 {% endblock %}

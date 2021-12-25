@@ -3,6 +3,8 @@
 {% block title %}Edit Livre{% endblock %}
 
 {% block body %}
+{% if app.user %}
+
     <table class="uk-pading-top">
         <tr>
             <td>
@@ -18,4 +20,6 @@
 
 
     {{ include('livre/_delete_form.html.twig') }}
+{% endif %}
+
 {% endblock %}

@@ -20,12 +20,18 @@
                 </li>
             </ul>
         </div>
-        <div class="uk-navbar-center">
-            <img src={{asset('assets/img/books.png')}} width="50px"/>&nbsp;&nbsp;BOOKSTORE
+        <div class="uk-navbar-center uk-padding-small">
+            <a href={{path('home')}}><img src={{asset('assets/img/books.png')}} width="50px"/>&nbsp;&nbsp;<strong>BOOKSTORE</strong></a>
         </div>
         <div class="uk-navbar-right uk-margin-large-right">
             <ul class="uk-navbar-nav">
-                <li><a href={{path('home')}}><i class="fas fa-book"></i> Sign in</a></li>
+            {% if not app.user %}
+                <li><a href={{path('app_login')}}><i class="fas fa-user-friends"></i> Login</a></li>
+                <li><a href={{path('app_register')}}><i class="fas fa-sign-in"></i> Sign in</a></li>
+            {% endif %}
+            {% if app.user %}
+                <li><a href={{path('app_logout')}}><i class="fas fa-sign-out-alt"></i> LogOut</a></li>
+            {% endif %}
             </ul>
         </div>
     </nav>

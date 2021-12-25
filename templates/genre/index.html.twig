@@ -42,8 +42,12 @@
             </tbody>
         </table>
     </div>
+{% if app.user %}
+
     <div align="center">
         <a href="{{ path('genre_new') }}" class="uk-button uk-button-secondary"><i class="fas fa-plus-square"></i> Create new</a>
     </div>
+{% endif %}
+
     </div>
 {% endblock %}

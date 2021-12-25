@@ -3,6 +3,8 @@
 {% block title %}New Auteur{% endblock %}
 
 {% block body %}
+{% if app.user %}
+
     <table class="uk-pading-top">
         <tr>
             <td>
@@ -13,6 +15,8 @@
             </td>
         </tr>
     </table>
+    
     {{ include('auteur/_form.html.twig') }}
 
+{% endif %}
 {% endblock %}

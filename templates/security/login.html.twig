@@ -3,26 +3,54 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <nav class="uk-navbar-container" uk-navbar="offset:0;mode:click">
+        <div class="uk-navbar-center uk-padding-small">
+            <a href="{{path('home')}}"><img src={{asset('assets/img/books.png')}} width="50px"/>&nbsp;&nbsp;<strong>BOOKSTORE</strong></a>
+        </div>
+        <div class="uk-navbar-right uk-margin-large-right">
+            <ul class="uk-navbar-nav">
+            {% if not app.user %}
+                <li><a href={{path('app_login')}}><i class="fas fa-user-friends"></i> Login</a></li>
+                <li><a href={{path('app_register')}}><i class="fas fa-sign-in"></i> Sign in</a></li>
+            {% endif %}
+            {% if app.user %}
+                <li><a href={{path('app_logout')}}><i class="fas fa-sign-out-alt"></i> LogOut</a></li>
+            {% endif %}
+            </ul>
+        </div>
+    </nav>
+<svg xmlns="http://www.w3.org/2000/svg" class="header" viewBox="0 0 1440 320"><path fill="#f3f4f5" fill-opacity="1" d="M0,192L48,170.7C96,149,192,107,288,80C384,53,480,43,576,32C672,21,768,11,864,16C960,21,1056,43,1152,90.7C1248,139,1344,213,1392,250.7L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
+    <div class="container front">
 
     {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        <div class="uk-margin">
+            You are logged in as {{ app.user.email }}, <a class="uk-button uk-button-secondary" href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
+<div align="center">
+<form method="post" align="left" class="uk-width-1-2 uk-form-horizontal uk-margin-large">
+    {% if error %}
+        <div class="uk-alert uk-alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+    
+    {% if not app.user %}
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+    <h1 align="center">Login</h1>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="inputEmail">Email</label>
+        <div class="uk-form-controls">
+            <input class="uk-input" type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" required autofocus placeholder="Entrez votre email">
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="inputPassword">Password</label>
+        <div class="uk-form-controls">
+            <input class="uk-input" type="password" name="password" id="inputPassword"  autocomplete="current-password" required placeholder="Password">
+        </div>
+    </div>
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -35,8 +63,10 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
+    <button class="uk-button uk-button-primary" type="submit">Login</button>
+
 </form>
+    {% endif %}
+</div>
+</div>
 {% endblock %}

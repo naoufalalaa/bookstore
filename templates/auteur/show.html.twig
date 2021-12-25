@@ -3,7 +3,8 @@
 {% block title %}Auteur{% endblock %}
 
 {% block body %}
-    <table class="uk-pading-top">
+<div align="center">
+    <table align="left" class="uk-pading-top">
         <tr>
             <td>
                 <a class="uk-button uk-button-secondary uk-padding-medium uk-margin-bottom" href="{{ path('auteur_index') }}"><</a>
@@ -13,7 +14,7 @@
             </td>
         </tr>
     </table>
-    <table class="uk-table uk-width-1-2@s">
+    <table align="center" class="uk-table uk-width-1-2@s">
         <tbody>
             <tr>
                 <th>Nom_prenom</th>
@@ -33,7 +34,7 @@
             </tr>
         </tbody>
     </table>
-
+{% if app.user %}
     <table class="uk-width-1-2@s">
         <tr align="center">
             <td>
@@ -44,6 +45,7 @@
             </td>
         </tr>
     </table>
+{% endif %}
 
-
+</div>
 {% endblock %}

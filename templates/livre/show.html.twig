@@ -3,17 +3,18 @@
 {% block title %}Livre{% endblock %}
 
 {% block body %}
-    <table class="uk-pading-top">
+<div align="center">
+    <table align="left" class="uk-pading-top">
         <tr>
             <td>
                 <a class="uk-button uk-button-secondary uk-padding-medium uk-margin-bottom" href="{{ path('livre_index') }}"><</a>
             </td>
             <td>
-                <h1>Livre</h1>
+                <h1>&nbsp;Livre</h1>
             </td>
         </tr>
     </table>
-    <table class="uk-table">
+    <table class="uk-table uk-width-2-3">
         <tbody>
             <tr>
                 <th>Isbn</th>
@@ -60,6 +61,7 @@
     </table>
 
 
+{% if app.user %}
 
     <table class="uk-width-1-2@s">
         <tr align="center">
@@ -72,6 +74,7 @@
         </tr>
     </table>
 
-
+{% endif %}
+</div>
 
 {% endblock %}
