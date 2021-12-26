@@ -6,7 +6,7 @@
 
 <div class="container front" align="center">
 
-    <table align="left" class="uk-pading-top">
+    <table align="left" class="uk-margin-top uk-pading-top">
         <tr>
             <td>
                 <a class="uk-button uk-button-secondary uk-padding-medium uk-margin-bottom" href="{{ path('genre_index') }}"><</a>
@@ -17,7 +17,7 @@
         </tr>
     </table>
 
-    <table align="center" class="table">
+    <table align="center" class="uk-margin-top uk-table">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -29,7 +29,6 @@
             </tr>
         </tbody>
     </table>
-
 {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
 
     <table class="uk-width-1-2@s">
