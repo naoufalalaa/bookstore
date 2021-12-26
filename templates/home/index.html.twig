@@ -25,6 +25,9 @@
         </div>
         <div class="uk-navbar-right uk-margin-large-right">
             <ul class="uk-navbar-nav">
+            {% if app.user.roles[0]=="ROLE_ADMIN"  %}
+                <li><a href="#">ADMIN</a></li>
+            {% endif %}
             {% if not app.user %}
                 <li><a href={{path('app_login')}}><i class="fas fa-user-friends"></i> Login</a></li>
                 <li><a href={{path('app_register')}}><i class="fas fa-sign-in"></i> Sign in</a></li>
@@ -36,13 +39,30 @@
         </div>
     </nav>
 <svg xmlns="http://www.w3.org/2000/svg" class="header" viewBox="0 0 1440 320"><path fill="#f3f4f5" fill-opacity="1" d="M0,192L48,170.7C96,149,192,107,288,80C384,53,480,43,576,32C672,21,768,11,864,16C960,21,1056,43,1152,90.7C1248,139,1344,213,1392,250.7L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
-<div style="margin-top : 100px" align="center" uk-scrollspy="cls: uk-animation-slide-top; repeat: true">
-    <img src={{asset('assets/img/title.png')}} />
+<div align="center" >
+    <div uk-grid style="margin-top : 100px" class="front uk-width-5-6" uk-scrollspy="cls: uk-animation-slide-top; repeat: true">
+        <div uk-parallax="y:0,100" uk-scrollspy="cls: uk-animation-slide-left; repeat: true" align="left" class="uk-width-1-3@s">
+            <h2 uk-parallax="x:0,50">Welcome to our BOOKSTORE</h2>
+            <p uk-parallax="x:0,-50"><i>Are You Looking For Original English Books?</i></p>
+            <p uk-parallax="x:0,10">Online Bookstore Specializing in Original English Books. Multiple Payment Options. Sign Up For Offers. Browse Categories.</p>
+        </div>
+        <div uk-parallax="y:0,100;x:0,40" uk-scrollspy="cls: uk-animation-slide-right; repeat: false" class="uk-width-2-3@s back"><img src={{asset('assets/img/Knowledge.gif')}}  width="400px" /></div>
+        
+    </div>
 </div>
+
 <div class="container front" align="center">
     <div align="left" class="uk-grid uk-width-5-6@m uk-width-6-7@s uk-margin-top" uk-grid="parallax : 50">
         <div class="uk-width-2-3" uk-scrollspy="cls: uk-animation-slide-left; repeat: true">
-            <h1 align="left">Livres</h1>
+            <div uk-grid>
+                <div class="uk-width-1-2">
+                    <h1 align="left">Livres</h1>
+                </div>
+                <div align="right">
+                    <input type="text" class="uk-input uk-width-1-1" placeholder="Search Book" />
+
+                </div>
+            </div>
             <ul class="uk-list uk-list-striped">
                 {% for livre in livres %}
                     <li><a href="{{ path('livre_show', {'id': livre.id}) }}"><i class="fas fa-book"></i> {{livre.titre}}  —  {% for auteur in livre.auteurs %}{{auteur}}{% endfor %}</a></li>
@@ -59,4 +79,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

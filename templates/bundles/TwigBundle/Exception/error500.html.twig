@@ -1,0 +1,12 @@
+{% extends 'navbar.html.twig' %}
+{% block title %}Page Inexistante{% endblock %}
+{% block body %}
+    <div class="front uk-margin-top" align="center">
+        <h1>Erreur du serveur!</h1>
+        <img width="500px" src={{ asset('assets/img/500error.png')}} >
+
+        <p>
+            Le serveur a connu une erreur interne, veuillez retourner à la page d'accueil ou visiter d'autres pages <a href={{path('home')}}>en cliquant ici</a>
+        </p>
+    </div>
+{% endblock %}

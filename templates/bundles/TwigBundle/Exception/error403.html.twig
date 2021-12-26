@@ -1,0 +1,12 @@
+{% extends 'navbar.html.twig' %}
+{% block title %}Page Inexistante{% endblock %}
+{% block body %}
+    <div class="front uk-margin-top" align="center">
+        <h1>Accès Interdit</h1>
+        <img width="500px" src={{ asset('assets/img/403error.png')}} >
+
+        <p>
+            La page demandée est interdite, veuillez retourner à la page d'accueil ou visiter d'autres pages <a href={{path('home')}}>en cliquant ici</a>
+        </p>
+    </div>
+{% endblock %}
