@@ -1,6 +1,6 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    {% if app.user %}
-    <button class="uk-button uk-button-primary">{{ button_label|default('Save') }}</button>
+    {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
+        <button class="uk-button uk-button-primary">{{ button_label|default('Save') }}</button>
     {% endif %}
 {{ form_end(form) }}

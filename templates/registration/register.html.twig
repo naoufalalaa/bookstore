@@ -3,6 +3,8 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+{% if not app.user %}
+
     <nav class="uk-navbar-container" uk-navbar="offset:0;mode:click">
         
         <div class="uk-navbar-center uk-padding-small">
@@ -38,4 +40,5 @@
             </div>
         </div>
     </div>
+{% endif %}
 {% endblock %}

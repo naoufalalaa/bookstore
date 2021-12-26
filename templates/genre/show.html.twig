@@ -47,7 +47,7 @@
         </tbody>
     </table>
 
-{% if app.user %}
+{% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
 
     <table class="uk-width-1-2@s">
         <tr align="center">

@@ -1,4 +1,4 @@
-{% if app.user %}
+{% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
 
 <form method="post" action="{{ path('genre_delete', {'id': genre.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ genre.id) }}">
