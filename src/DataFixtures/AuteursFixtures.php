@@ -15,7 +15,7 @@ class AuteursFixtures extends Fixture
             $auteur = new Auteur();
             $auteur->setNomPrenom($faker->name);
             $auteur->setSexe(array_rand(array("M"=>"male","F"=>"female")));
-            $auteur->setDateDeNaissance($faker->dateTime($format = 'Y-m-d', $max = '2016-06-09'));
+            $auteur->setDateDeNaissance($faker->dateTimeBetween($startDate = '1900-01-01', $endDate = '2021-01-01', $timezone = null));
             $auteur->setNationalite($faker->countryCode);
             $manager->persist($auteur);
             //Enregistrer les references de tel sorte qu'on peut les appeler plutard

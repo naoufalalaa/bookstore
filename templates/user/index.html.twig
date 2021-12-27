@@ -3,6 +3,7 @@
 {% block title %}User index{% endblock %}
 
 {% block body %}
+<div class="container">
     <h1>User index</h1>
 
     <table class="uk-table">
@@ -11,7 +12,6 @@
                 <th>Id</th>
                 <th>Email</th>
                 <th>Roles</th>
-                <th>Password</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,10 +20,18 @@
             <tr>
                 <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
                 <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
+                {% for role in user.roles %}
+                    {% if role == "ROLE_ADMIN" %}
+                        Administarteur
+                    {% endif %}
+                    {% if role == "ROLE_USER" %}
+                        Utilisateur
+                    {% endif %}
+                {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a> 
                     <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
                 </td>
             </tr>
@@ -35,5 +43,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('user_new') }}">Create new</a>
+    <a class="uk-button uk-button-secondary" href="{{ path('user_new') }}"><i class="fas fa-plus-square"></i> Create new</a>
+    </div>
 {% endblock %}
