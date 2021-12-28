@@ -7,11 +7,10 @@
 {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
 <div class="container front">
 
-    <h1>Edit Genre</h1>
+    <h1><a class="uk-button uk-button-secondary" href="{{ path('genre_index') }}"><</a> Edit Genre</h1>
 
     {{ include('genre/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('genre_index') }}">back to list</a>
 
     {{ include('genre/_delete_form.html.twig') }}
 </div>

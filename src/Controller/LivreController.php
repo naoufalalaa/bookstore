@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Livre;
 use App\Form\LivreType;
+use App\Form\SearchLivreType;
 use App\Repository\LivreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,6 +22,16 @@ class LivreController extends AbstractController
             'livres' => $livreRepository->findAll(),
         ]);
     }
+    // #[Route('/', name: 'livre_index', methods: ['GET'])]
+    // public function seachByTitle(Request $request, LivreRepository $livreRepository): Response
+    // {
+    //     $form = $this->createForm(SearchLivreType::class);
+    //     $search = $form->handleRequest($request);
+    //     return $this->render('livre/index.html.twig', [
+    //         'livres' => $livreRepository->findBytitleField($search),
+    //         'form' => $form->createView()
+    //     ]);
+    // }
 
     #[Route('/new', name: 'livre_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response

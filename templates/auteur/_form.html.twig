@@ -1,5 +1,34 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+
+    <table class="table ">
+        <tr>
+            <th>Nom et Prénom</th>
+            <td>
+                {{ form_row(form.nom_prenom) }}
+            </td>
+        </tr>
+        <tr>
+            <th>Sexe</th>
+            <td>
+                {{ form_row(form.sexe) }}
+            </td>
+        </tr>
+        <tr>
+            <th>Date de naissance</th>
+            <td>
+                {{ form_row(form.date_de_naissance) }}
+            </td>
+        </tr>
+        <tr>
+            <th>Nationalité</th>
+            <td>
+                {{ form_row(form.nationalite) }}
+            </td>
+        </tr>
+    </table>
+    
+    {# {{ form_widget(form) }} #}
+
     {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
         <button class="uk-button uk-button-primary">{{ button_label|default('Save') }}</button>
     {% endif %}

@@ -1,7 +1,17 @@
 {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
 
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+
+    <table class="table">
+        <tr>
+            <th>Nom du genre</th>
+            <td>
+                {{ form_row(form.nom)}}
+            </td>
+        </tr>
+    </table>
+
+    {# {{ form_widget(form) }} #}
     <button class="uk-button uk-button-primary">{{ button_label|default('Add') }}</button>
 {{ form_end(form) }}
 

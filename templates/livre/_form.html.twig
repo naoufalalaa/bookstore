@@ -1,6 +1,49 @@
 {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    <table class="table ">
+        <tr>
+            <th>ISBN</th>
+            <td>
+                {{ form_row(form.isbn) }}
+            </td>
+        </tr>
+        <tr>
+            <th>Titre</th>
+            <td>
+                {{ form_row(form.titre) }}
+            </td>
+        </tr>
+        <tr>
+            <th>Nombre de Pages</th>
+            <td>
+                {{ form_row(form.nombre_pages) }}
+            </td>
+        </tr>
+        <tr>
+            <th>Date de parution</th>
+            <td>
+                {{ form_row(form.date_de_parution) }}
+            </td>
+        </tr>
+        <tr>
+            <th>Note du livre</th>
+            <td>
+                {{ form_row(form.note) }}
+            </td>
+        </tr>
+        <tr>
+            <th>Auteurs participants au livre</th>
+            <td>
+                {{ form_row(form.auteurs) }}
+            </td>
+        </tr>
+        <tr>
+            <th>Genre(s) du livre</th>
+            <td>
+                {{ form_row(form.genres) }}
+            </td>
+        </tr>
+    </table>
     <button class="uk-button uk-button-primary">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
 {% endif %}

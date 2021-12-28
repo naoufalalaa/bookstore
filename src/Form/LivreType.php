@@ -6,7 +6,7 @@ use App\Entity\Livre;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,11 +15,29 @@ class LivreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('isbn')
-            ->add('titre')
-            ->add('nombre_pages')
+            ->add('isbn' , TextType::class,[
+                'attr'=>[
+                    'class'=> 'uk-input',
+                    'placeholder' => 'Entrez l\' ISBN'
+                ]
+            ])
+            ->add('titre' , TextType::class,[
+                'attr'=>[
+                    'class'=> 'uk-input',
+                    'placeholder' => 'Entrez le titre du bouquint'
+                ]
+            ])
+            ->add('nombre_pages' , null,[
+                'attr'=>[
+                    'class'=> 'uk-input',
+                    'placeholder' => 'Entrez le nombre de page'
+                ]
+            ])
             ->add('date_de_parution',DateType::class,[
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'attr'=>[
+                    'class'=> 'uk-input',
+                ]
             ])
             ->add('note',ChoiceType::class,[
                 'choices' => [
@@ -45,8 +63,16 @@ class LivreType extends AbstractType
                     '20/20' => 20,
                 ],
             ])
-            ->add('auteurs')
-            ->add('genres')
+            ->add('auteurs', null,[
+                'attr' => [
+                    'multiple' => true
+                ]
+            ])
+            ->add('genres', null,[
+                'attr' => [
+                    'multiple' => true
+                ]
+            ])
         ;
     }
 
