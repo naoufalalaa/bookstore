@@ -7,7 +7,16 @@
 <div class="container front">
 
     <h1>Livre index</h1>
-    
+    {{ form_start(search) }}
+        <div class="uk-width-1-2@s" uk-grid>
+            <div>
+            {{ form_row(search.titre) }}
+            </div>
+            <div>
+            {{ form_row(search.Rechercher) }}
+            </div>
+        </div>
+    {{ form_end(search) }}
     {% for message in app.flashes('Success') %}
         <div class="uk-alert uk-alert-success">
             {{ message }}
@@ -70,6 +79,16 @@
         {% endfor %}
         </tbody>
     </table>
+
+    {% if search.titre %}
+    <ul class="uk-pagination">
+    {% for i in 1..((totalLivres/5)|round(0,'ceil')) %}
+        <li>
+            <a href="{{ path("livre_index", {page : i}) }}">{{i}}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}
 {% if app.user and app.user.roles[0]=="ROLE_ADMIN"  %}
     <a href="{{ path('livre_new') }}" class="uk-button uk-button-secondary"><i class="fas fa-plus-square"></i> Create new</a>
 {% endif %}

@@ -15,24 +15,51 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/livre')]
 class LivreController extends AbstractController
 {
-    #[Route('/', name: 'livre_index', methods: ['GET'])]
-    public function index(LivreRepository $livreRepository): Response
+    #[Route('/', name: 'livre_index')]
+    public function index(LivreRepository $livreRepository,Request $req): Response
     {
+        $qb = $livreRepository->getPaginatedLivres($req->query->get("page",1));
+        $form = $this->createForm(SearchLivreType::class);
+        
+        $search = $form->handleRequest($req);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            $qb = $livreRepository->createQueryBuilder('l')
+                             ->where('l.titre LIKE :titre')
+                             ->setParameter('titre','%'.$search->get('titre')->getData().'%')
+                             ->getQuery()->getResult();
+        }
+
+        
+            
         return $this->render('livre/index.html.twig', [
-            'livres' => $livreRepository->findAll(),
+            'livres' => $qb,
+            'search' => $form->createView(),
+            'totalLivres' => $livreRepository->countLivres()
         ]);
     }
-    // #[Route('/', name: 'livre_index', methods: ['GET'])]
+    // #[Route('/', name: 'livre_index')]
     // public function seachByTitle(Request $request, LivreRepository $livreRepository): Response
     // {
+    //     $livres = $livreRepository->findAll();
+
     //     $form = $this->createForm(SearchLivreType::class);
+        
     //     $search = $form->handleRequest($request);
+
+    //     if($form->isSubmitted() && $form->isValid()){
+
+    //         $livres = $livreRepository->search(
+    //             $search->get('titre')->getData(),
+    //         );
+    //     }
+
     //     return $this->render('livre/index.html.twig', [
-    //         'livres' => $livreRepository->findBytitleField($search),
-    //         'form' => $form->createView()
+    //         'livres' => $livres,
+    //         'search' => $form->createView()
     //     ]);
     // }
-
     #[Route('/new', name: 'livre_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {

@@ -65,6 +65,11 @@
                     <li><a href="{{ path('livre_show', {'id': livre.id}) }}"><i class="fas fa-book"></i> {{livre.titre}}  —  {% for auteur in livre.auteurs %}{{auteur}}{% endfor %}</a></li>
                 {% endfor %}
             </ul>
+            <ul class="uk-pagination">
+                {% for i in 1..((totalLivre/5) | round(1, 'ceil')) %}
+                <li><a href="{{ path("home",{pageLivre : i}) }}">{{ i }}</a></li>
+                {% endfor %}
+            </ul>
         </div>
         <div class="uk-width-1-3"  uk-scrollspy="cls: uk-animation-slide-right; repeat: true">
             <h1 align="left">Writers</h1>

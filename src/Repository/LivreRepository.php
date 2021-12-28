@@ -18,6 +18,38 @@ class LivreRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Livre::class);
     }
+    
+    public function getPaginatedLivres($page){
+        $qb = $this->createQueryBuilder("l")
+            ->orderBy("l.titre")
+            ->setFirstResult(($page-1)*5)
+            ->setMaxResults(5)
+        ;
+        return $qb->getQuery()->getResult();
+    }
+
+    public function countLivres()
+    {
+        return $this->createQueryBuilder('l')
+                    ->select("COUNT(l.id)")
+                    ->getQuery()
+                    ->getSingleScalarResult();
+    }
+
+
+
+    public function search($titre = null):array
+    {
+        return $this->createQueryBuilder('l')
+                             ->where('l.titre LIKE :titre')
+                             ->setParameter('titre','%'.$titre.'%')
+                             ->getQuery()->getResult();
+    }
+
+
+
+
+
 
     // /**
     //  * @return Livre[] Returns an array of Livre objects

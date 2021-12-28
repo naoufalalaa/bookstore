@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Genre;
 use App\Entity\Livre;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -18,7 +20,9 @@ class SearchLivreType extends AbstractType
         $builder
             ->add('titre', SearchType::class , [
                 'label' => false,
+                'required' => false,
                 'attr' => [
+                    'required'=> false,
                     'class'=> 'uk-input',
                     'placeholder' => 'Chercher par Titre',
                 ]
