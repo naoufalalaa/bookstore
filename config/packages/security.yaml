@@ -37,6 +37,7 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/(livre|auteur|genre|user)/\d+/edit, roles: ROLE_ADMIN }
+        - { path: ^/(livre|auteur|genre|user)/new, roles: ROLE_ADMIN }
         - { path: ^/user, roles: ROLE_ADMIN }
         - { path: ^/profil, roles: ROLE_USER }
     

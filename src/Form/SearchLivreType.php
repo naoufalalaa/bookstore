@@ -28,7 +28,9 @@ class SearchLivreType extends AbstractType
                 ]
             ])
             ->add('Rechercher', SubmitType::class, [
-                'attr'=> array('uk-button', 'uk-button-primary')
+                'attr'=> [
+                    'class' => 'uk-button uk-button-primary'
+                ]
             ])
         ;
     }

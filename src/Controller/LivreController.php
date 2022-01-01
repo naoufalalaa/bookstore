@@ -20,25 +20,20 @@ class LivreController extends AbstractController
     {
         $qb = $livreRepository->getPaginatedLivres($req->query->get("page",1));
         $form = $this->createForm(SearchLivreType::class);
-        
         $search = $form->handleRequest($req);
-
         if($form->isSubmitted() && $form->isValid()){
-
             $qb = $livreRepository->createQueryBuilder('l')
                              ->where('l.titre LIKE :titre')
                              ->setParameter('titre','%'.$search->get('titre')->getData().'%')
                              ->getQuery()->getResult();
-        }
-
-        
-            
+        }   
         return $this->render('livre/index.html.twig', [
             'livres' => $qb,
             'search' => $form->createView(),
             'totalLivres' => $livreRepository->countLivres()
         ]);
     }
+
     // #[Route('/', name: 'livre_index')]
     // public function seachByTitle(Request $request, LivreRepository $livreRepository): Response
     // {
@@ -60,6 +55,7 @@ class LivreController extends AbstractController
     //         'search' => $form->createView()
     //     ]);
     // }
+
     #[Route('/new', name: 'livre_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
